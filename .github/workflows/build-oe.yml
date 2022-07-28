@@ -28,6 +28,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build OE
         run: |
+          apt-get install diffstat
           git clone git://git.openembedded.org/openembedded-core oe-core
           cd oe-core
           git clone git://git.openembedded.org/bitbake bitbake
