@@ -39,10 +39,16 @@ jobs:
           source ./oe-init-build-env
           sed -i 's/#MACHINE ?= "qemux86"/MACHINE ?= "qemux86"/g' ./conf/local.conf
           bitbake core-image-minimal
+          ls -l
           
       - name: Upload
         uses: actions/upload-artifact@v3
         with:
           name: oe-core-minimal
-          path: oe-core/build/
+          path: |
+            oe-core/build/
+            !oe-core/build/tmp/
+            !oe-core/build/tmp*/
+            !oe-core/build/sstate-cache/
+            !oe-core/build/downloads/
           retention-days: 30
